@@ -12,6 +12,11 @@ import org.testng.annotations.BeforeSuite;
 import java.io.File;
 import java.util.Random;
 
+/**
+ * Define methods to get browser driver, thread sleeps, close browser and quit driver...
+ * All testcases class will extends from this class
+ * @author Son
+ */
 public abstract class BaseTest {
     private WebDriver driver;
 
@@ -130,10 +135,6 @@ public abstract class BaseTest {
         return String.valueOf(now.getYear());
     }
 
-    /**
-     * Get today with format
-     * @return today
-     */
     protected String getToday() {
         String today = getCurrentMonth() + "/" + getCurrentDay() + "/" + getCurrentYear();
         System.out.println(today);
@@ -144,6 +145,10 @@ public abstract class BaseTest {
         return this.driver;
     }
 
+    /**
+     * Close browser and kill all running process of browser driver
+     * @author Son
+     */
     public void closeBrowserAndKillProcess() {
         String cmd = "";
         try {
