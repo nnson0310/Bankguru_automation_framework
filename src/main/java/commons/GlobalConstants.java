@@ -5,6 +5,10 @@ import lombok.Setter;
 
 import java.io.File;
 
+/**
+ * Define all constant variables which will be used in project context
+ * through getters methods (Singleton Pattern applying)
+ */
 @Getter
 @Setter
 public class GlobalConstants {

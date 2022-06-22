@@ -12,7 +12,11 @@ import java.util.List;
 import java.util.Set;
 import java.util.concurrent.TimeUnit;
 
-
+/**
+ * Define all methods of selenium API to interact with browser
+ * PageObject will extends from this class
+ * @author Son
+ */
 public abstract class BasePage {
 
     private WebDriverWait explicitWait;
