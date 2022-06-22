@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<suite name="Bankguru Automation" parallel="true">
+    <listeners>
+        <listener class-name="reportConfig.MethodListener"></listener>
+        <listener class-name="org.uncommons.reportng.HTMLReporter"/>
+        <listener class-name="org.uncommons.reportng.JUnitXMLReporter"/>
+        <listener class-name="reportConfig.ReportNGListener"/>
+    </listeners>
+
+    <test name="Chrome" description="Run on chrome">
+        <classes>
+            <class name=""/>
+        </classes>
+    </test>
+
+    <test name="Firefox" description="Run on firefox">
+        <classes>
+            <class name=""/>
+        </classes>
+    </test>
+</suite>
