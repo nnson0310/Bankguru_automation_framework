@@ -1,4 +1,4 @@
-package reportConfig;
+package reportconfig;
 
 import java.util.List;
 

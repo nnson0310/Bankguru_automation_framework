@@ -1,23 +1,24 @@
 package commons;
 
+import envfactory.CloudEnvFactory;
+import envfactory.GridEnvFactory;
+import envfactory.LocalEnvFactory;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
-import org.joda.time.DateTime;
-import org.joda.time.DateTimeZone;
 import org.openqa.selenium.WebDriver;
 import org.testng.Assert;
 import org.testng.Reporter;
 import org.testng.annotations.BeforeSuite;
 
 import java.io.File;
-import java.util.Random;
+import java.util.concurrent.TimeUnit;
 
 /**
  * Define methods to get browser driver, thread sleeps, close browser and quit driver...
  * All testcases class will extends from this class
  * @author Son
  */
-public abstract class BaseTest {
+public class BaseTest {
     private WebDriver driver;
 
     protected final Log log;
@@ -28,17 +29,31 @@ public abstract class BaseTest {
         log = LogFactory.getLog(getClass());
     }
 
-    public int generateRandomNumber() {
-        Random random = new Random();
-        return random.nextInt(9999);
-    }
-
-    public static void sleepInSeconds(long seconds) {
-        try {
-            Thread.sleep(seconds * 1000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
+    public WebDriver getBrowserDriver(
+            String url,
+            String browserName,
+            String browserVersion,
+            String environmentName,
+            String ipAddress,
+            String port,
+            String platform
+    ) {
+        switch(environmentName) {
+            case "grid":
+                driver = new GridEnvFactory(browserName, ipAddress, port).getDriver();
+                break;
+            case "cloud":
+                driver = new CloudEnvFactory(browserName, browserVersion, platform).getDriver();
+                break;
+            default:
+                driver = new LocalEnvFactory(browserName).getDriver();
         }
+
+        driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+        driver.manage().window().maximize();
+        driver.get(url);
+
+        return driver;
     }
 
     //Custom Assert
@@ -91,13 +106,13 @@ public abstract class BaseTest {
 
     @BeforeSuite
     public void deleteAllureReport() {
-        deleteAllFileInFolder("/allure-json");
+        deleteAllFileInFolder("allure-json");
     }
 
-    public void deleteAllFileInFolder(String reportName) {
+    public void deleteAllFileInFolder(String folderName) {
         try {
-            String pathFolderDownload = GlobalConstants.getGlobalConstants().getProjectPath() + reportName;
-            File file = new File(pathFolderDownload);
+            String pathToFolder = GlobalConstants.getGlobalConstants().getProjectPath() + File.separator + folderName;
+            File file = new File(pathToFolder);
             File[] listOfFiles = file.listFiles();
             for (int i = 0; i < listOfFiles.length; i++) {
                 if (listOfFiles[i].isFile()) {
@@ -107,38 +122,6 @@ public abstract class BaseTest {
         } catch (Exception e) {
             System.out.print(e.getMessage());
         }
-    }
-
-
-    protected String getCurrentDay() {
-        DateTime nowUTC = new DateTime(DateTimeZone.UTC);
-        int day = nowUTC.getDayOfMonth();
-        if (day < 10) {
-            String dayValue = "0" + day;
-            return dayValue;
-        }
-        return String.valueOf(day);
-    }
-
-    protected String getCurrentMonth() {
-        DateTime now = new DateTime(DateTimeZone.UTC);
-        int month = now.getMonthOfYear();
-        if (month < 10) {
-            String monthValue = "0" + month;
-            return monthValue;
-        }
-        return String.valueOf(month);
-    }
-
-    protected String getCurrentYear() {
-        DateTime now = new DateTime(DateTimeZone.UTC);
-        return String.valueOf(now.getYear());
-    }
-
-    protected String getToday() {
-        String today = getCurrentMonth() + "/" + getCurrentDay() + "/" + getCurrentYear();
-        System.out.println(today);
-        return today;
     }
 
     public WebDriver getDriver() {
