@@ -1,21 +1,29 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <suite name="Bankguru Automation" parallel="true">
     <listeners>
-        <listener class-name="reportConfig.MethodListener"></listener>
+        <listener class-name="reportconfig.MethodListener"></listener>
         <listener class-name="org.uncommons.reportng.HTMLReporter"/>
         <listener class-name="org.uncommons.reportng.JUnitXMLReporter"/>
-        <listener class-name="reportConfig.ReportNGListener"/>
+        <listener class-name="reportconfig.ReportNGListener"/>
     </listeners>
+    <parameter name="registerUrl" value="https://demo.guru99.com"></parameter>
 
-    <test name="Chrome" description="Run on chrome">
-        <classes>
-            <class name=""/>
-        </classes>
-    </test>
+<!--    <test name="Chrome" description="Run on chrome">-->
+<!--        <classes>-->
+<!--            <class name="bankguru.customer.create.TC_01_Create_Customer_Verify_Name_Field"></class>-->
+<!--        </classes>-->
+<!--    </test>-->
 
     <test name="Firefox" description="Run on firefox">
+        <parameter name="browserName" value="firefox"></parameter>
+        <parameter name="browserVersion" value="latest"></parameter>
+        <parameter name="environmentName" value="localhost"></parameter>
+        <parameter name="ipAddress" value="4444"></parameter>
+        <parameter name="port" value="firefox"></parameter>
+        <parameter name="platform" value="Windows 10"></parameter>
         <classes>
-            <class name=""/>
+            <class name="bankguru.Pre_Condition_Register_Email_And_Login"></class>
+            <class name="bankguru.customer.create.TC_01_Create_Customer_Verify_Name_Field"></class>
         </classes>
     </test>
 </suite>
