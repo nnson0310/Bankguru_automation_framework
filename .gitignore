@@ -1,6 +1,8 @@
 ### Maven ###
 target/
 test-output/
+browserLogs/
+scriptLogs/
 pom.xml.tag
 pom.xml.releaseBackup
 pom.xml.versionsBackup
