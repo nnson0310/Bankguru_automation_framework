@@ -17,7 +17,7 @@ public class ManagerHomePage extends BasePage {
     }
 
     public CreateCustomerPage navigateToCreateCustomerPage(WebDriver driver, String menuSub) {
-        navigateToMenuSubByDynamicLocator(driver, menuSub);
+        clickToMenuSubByDynamicLocator(driver, menuSub);
         return PageGeneratorManager.getPageGeneratorManager().getCreateCustomerPage(driver);
     }
 }

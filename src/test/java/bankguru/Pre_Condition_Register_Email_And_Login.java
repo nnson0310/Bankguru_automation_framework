@@ -18,7 +18,7 @@ public class Pre_Condition_Register_Email_And_Login extends BaseTest {
 //    public static String email, userId, password, url;
     public static String userId = "mngr417606";
     public static String password = "ErugYpE";
-    public static String url = "https://demo.guru99.com/v1";
+    public static String url = "https://demo.guru99.com/v4";
 
     RegisterPage registerPage;
     AccessDetailPage accessDetailPage;
@@ -54,7 +54,7 @@ public class Pre_Condition_Register_Email_And_Login extends BaseTest {
 //        //get server name from command line and check if server name is invalid
 //        String serverName = System.getProperty("server");
 //        if (serverName == null || serverName.equals("")) {
-//            serverName = "dev";
+//            serverName = "product";
 //        }
 //        ConfigFactory.setProperty("server", serverName);
 //        ServerConfig serverconfig = ConfigFactory.create(ServerConfig.class);

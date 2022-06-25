@@ -218,6 +218,12 @@ public abstract class BasePage {
         action.sendKeys(Keys.TAB).perform();
     }
 
+    public void pressSpaceButton(WebDriver driver) {
+        action = new Actions(driver);
+
+        action.sendKeys(Keys.SPACE).perform();
+    }
+
     protected void selectItemInDropDown(WebDriver driver, String locator, String text) {
         Select select = new Select(getElement(driver, locator));
         select.selectByVisibleText(text);
@@ -525,7 +531,7 @@ public abstract class BasePage {
      * @param driver selenium webdriver instance
      * @param menuSub name of sub_menu will be redirected to
      */
-    public void navigateToMenuSubByDynamicLocator(WebDriver driver, String menuSub) {
+    public void clickToMenuSubByDynamicLocator(WebDriver driver, String menuSub) {
         waitForElementClickable(driver, CommonUI.MENU_SUB_NAV, menuSub);
         clickToElement(driver, CommonUI.MENU_SUB_NAV, menuSub);
     }
@@ -549,8 +555,8 @@ public abstract class BasePage {
      * @param errorMessage error message will be displayed when validation fails
      * @return boolean value
      */
-    public boolean isValidationErrorMessageDisplayed(WebDriver driver, String errorMessage) {
-        waitForElementVisible(driver, CommonUI.VALIDATION_ERROR_MESSAGE, errorMessage);
-        return isElementDisplayed(driver, CommonUI.VALIDATION_ERROR_MESSAGE, errorMessage);
+    public boolean isValidationErrorMessageDisplayed(WebDriver driver, String inputName, String errorMessage) {
+        waitForElementVisible(driver, CommonUI.VALIDATION_ERROR_MESSAGE, inputName, errorMessage);
+        return isElementDisplayed(driver, CommonUI.VALIDATION_ERROR_MESSAGE, inputName, errorMessage);
     }
 }
