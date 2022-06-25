@@ -18,7 +18,7 @@ public class TC_01_Verify_Name_Field extends BaseTest {
     PageGeneratorManager pageGeneratorManager;
     private String[] numericNames, specialCharNames;
 
-    String menuSub;
+    String menuSub, inputName;
 
     LoginPage loginPage;
     ManagerHomePage managerHomePage;
@@ -34,6 +34,7 @@ public class TC_01_Verify_Name_Field extends BaseTest {
             @Optional("4444") String port,
             @Optional("Windows 10") String platform
     ) {
+
         driver = getBrowserDriver(Pre_Condition_Register_Email_And_Login.url, browserName, browserVersion, environmentName, ipAddress, port, platform);
         loginPage = PageGeneratorManager.getPageGeneratorManager().getLoginPage(driver);
 
@@ -49,6 +50,7 @@ public class TC_01_Verify_Name_Field extends BaseTest {
         verifyTrue(managerHomePage.isLoginSuccessTextDisplayed(driver));
 
         menuSub = CommonText.getCommonText().getNewCustomerMenuSub();
+        inputName = "name";
 
         //test data
         numericNames = new String[]{"33333", "hoa567"};
@@ -62,13 +64,13 @@ public class TC_01_Verify_Name_Field extends BaseTest {
         createCustomerPage = managerHomePage.navigateToCreateCustomerPage(driver, menuSub);
 
         log.info("TC_Empty_Name - Step 02: Clear customer name field");
-        createCustomerPage.inputToTextboxByDynamicLocator(driver, "", "name");
+        createCustomerPage.inputToTextboxByDynamicLocator(driver, "", inputName);
 
         log.info("TC_Empty_Name - Step 03: Press TAB button");
         createCustomerPage.pressTabButton(driver);
 
         log.info("TC_Empty_Name - Step 04: Verify that error message \"Customer name must not be blank\" is displayed");
-        verifyTrue(createCustomerPage.isValidationErrorMessageDisplayed(driver, "Customer name must not be blank"));
+        verifyTrue(createCustomerPage.isValidationErrorMessageDisplayed(driver, inputName,"Customer name must not be blank"));
     }
 
     @Test(description = "Verify that Name can not be numeric")
@@ -76,10 +78,10 @@ public class TC_01_Verify_Name_Field extends BaseTest {
 
         for(String numericName : numericNames) {
             log.info("TC_Numeric_Name - Step 01: Enter numeric value in Name field with value = " + numericName);
-            createCustomerPage.inputToTextboxByDynamicLocator(driver, numericName, "name");
+            createCustomerPage.inputToTextboxByDynamicLocator(driver, numericName, inputName);
 
             log.info("TC_Numeric_Name - Step 02: Verify that error message \"Numbers are not allowed\" is displayed");
-            verifyTrue(createCustomerPage.isValidationErrorMessageDisplayed(driver, "Numbers are not allowed"));
+            verifyTrue(createCustomerPage.isValidationErrorMessageDisplayed(driver, inputName,"Numbers are not allowed"));
         }
     }
 
@@ -88,10 +90,10 @@ public class TC_01_Verify_Name_Field extends BaseTest {
 
         for(String specialCharName : specialCharNames) {
             log.info("TC_Special_Chars_Name - Step 01: Enter special chars in Name field with value = " + specialCharName);
-            createCustomerPage.inputToTextboxByDynamicLocator(driver, specialCharName, "name");
+            createCustomerPage.inputToTextboxByDynamicLocator(driver, specialCharName, inputName);
 
             log.info("TC_Special_Chars_Name - Step 02: Verify that error message \"Special characters are not allowed\" is displayed");
-            verifyTrue(createCustomerPage.isValidationErrorMessageDisplayed(driver, "Special characters are not allowed"));
+            verifyTrue(createCustomerPage.isValidationErrorMessageDisplayed(driver, inputName,"Special characters are not allowed"));
         }
     }
 
