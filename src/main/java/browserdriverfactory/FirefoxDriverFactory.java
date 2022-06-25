@@ -5,6 +5,9 @@ import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.firefox.FirefoxOptions;
+import org.openqa.selenium.firefox.FirefoxProfile;
+
+import java.io.File;
 
 public class FirefoxDriverFactory implements BrowserFactory {
     @Override
@@ -13,6 +16,12 @@ public class FirefoxDriverFactory implements BrowserFactory {
 
         FirefoxOptions firefoxOptions = new FirefoxOptions();
         firefoxOptions.setAcceptInsecureCerts(true);
+
+        //add extension
+        FirefoxProfile firefoxProfile = new FirefoxProfile();
+        File adBlockPlus = new File(GlobalConstants.getGlobalConstants().getBrowserExtensionPath() + "adblock.xpi");
+        firefoxProfile.addExtension(adBlockPlus);
+        firefoxOptions.setProfile(firefoxProfile);
 
         //auto save downloaded file
         firefoxOptions.addPreference("browser.download.folderList", 2);

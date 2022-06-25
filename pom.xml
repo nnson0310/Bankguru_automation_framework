@@ -23,9 +23,6 @@
         <reportng.version>1.1.4</reportng.version>
         <webdrivermanager.version>4.4.3</webdrivermanager.version>
         <aspectj.version>1.8.10</aspectj.version>
-
-        <!-- Set default server name to get corresponding url: dev, testing, staging or product -->
-        <server>dev</server>
     </properties>
 
     <dependencies>
@@ -117,7 +114,7 @@
         <dependency>
             <groupId>org.uncommons</groupId>
             <artifactId>reportng</artifactId>
-            <version>1.1.4</version>
+            <version>${reportng.version}</version>
         </dependency>
 
         <dependency>
@@ -153,6 +150,8 @@
                     <suiteXmlFiles>
                         <file>src/test/resources/RunBankguru.xml</file>
                     </suiteXmlFiles>
+
+                    <reportsDirectory>test-output</reportsDirectory>
 
                     <!-- Argument -->
                     <argLine>

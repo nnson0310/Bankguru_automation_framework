@@ -2,7 +2,6 @@ package utilities;
 
 import org.joda.time.DateTime;
 import org.joda.time.DateTimeZone;
-
 import java.util.Random;
 
 public final class FunctionHelper {
