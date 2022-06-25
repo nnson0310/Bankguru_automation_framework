@@ -32,4 +32,8 @@ public class PageGeneratorManager {
     public ManagerHomePage getManagerHomePage(WebDriver driver) {
         return new ManagerHomePage(driver);
     }
+    public CreateCustomerPage getCreateCustomerPage(WebDriver driver) {
+        return new CreateCustomerPage(driver);
+    }
+
 }

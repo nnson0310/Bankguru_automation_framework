@@ -7,7 +7,7 @@ import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
-import pageobjects.LoginPage;
+import pageinterfaces.CommonUI;
 
 import java.util.List;
 import java.util.Set;
@@ -68,7 +68,7 @@ public abstract class BasePage {
         driver.navigate().back();
     }
 
-    protected void refreshPage(WebDriver driver) {
+    public void refreshPage(WebDriver driver) {
         driver.navigate().refresh();
     }
 
@@ -206,10 +206,16 @@ public abstract class BasePage {
         getElement(driver, getDynamicXpath(locator, dynamicValues)).sendKeys(Keys.chord(Keys.CONTROL, "a", Keys.DELETE));
     }
 
-    protected void pressEnterButton(WebDriver driver) {
+    public void pressEnterButton(WebDriver driver) {
         action = new Actions(driver);
 
-        action.sendKeys(Keys.ENTER);
+        action.sendKeys(Keys.ENTER).perform();
+    }
+
+    public void pressTabButton(WebDriver driver) {
+        action = new Actions(driver);
+
+        action.sendKeys(Keys.TAB).perform();
     }
 
     protected void selectItemInDropDown(WebDriver driver, String locator, String text) {
@@ -511,5 +517,40 @@ public abstract class BasePage {
         explicitWait = new WebDriverWait(driver, GlobalConstants.getGlobalConstants().getLongTimeout());
 
         explicitWait.until(ExpectedConditions.invisibilityOfAllElements(getElements(driver, getDynamicXpath(locator, dynamicValues))));
+    }
+
+    /**
+     * Navigate to sub_menu by dynamic locator
+     * @author Son
+     * @param driver selenium webdriver instance
+     * @param menuSub name of sub_menu will be redirected to
+     */
+    public void navigateToMenuSubByDynamicLocator(WebDriver driver, String menuSub) {
+        waitForElementClickable(driver, CommonUI.MENU_SUB_NAV, menuSub);
+        clickToElement(driver, CommonUI.MENU_SUB_NAV, menuSub);
+    }
+
+    /**
+     * Input to textbox by dynamic locator
+     * @author Son
+     * @param driver selenium webdriver instance
+     * @param textboxName name of textbox
+     * @return
+     */
+    public void inputToTextboxByDynamicLocator(WebDriver driver, String value, String textboxName) {
+        waitForElementVisible(driver, CommonUI.DYNAMIC_TEXTBOX, textboxName);
+        sendKeyToElement(driver, CommonUI.DYNAMIC_TEXTBOX, value, textboxName);
+    }
+
+    /**
+     * Check if
+     * @author Son
+     * @param driver selenium webdriver instance
+     * @param errorMessage error message will be displayed when validation fails
+     * @return boolean value
+     */
+    public boolean isValidationErrorMessageDisplayed(WebDriver driver, String errorMessage) {
+        waitForElementVisible(driver, CommonUI.VALIDATION_ERROR_MESSAGE, errorMessage);
+        return isElementDisplayed(driver, CommonUI.VALIDATION_ERROR_MESSAGE, errorMessage);
     }
 }
