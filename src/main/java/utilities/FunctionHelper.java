@@ -2,6 +2,10 @@ package utilities;
 
 import org.joda.time.DateTime;
 import org.joda.time.DateTimeZone;
+
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.Random;
 
 public final class FunctionHelper {
@@ -51,5 +55,10 @@ public final class FunctionHelper {
     public static String getToday() {
         String today = getCurrentMonth() + "/" + getCurrentDay() + "/" + getCurrentYear();
         return today;
+    }
+
+    public static String getTodayByFormat(Date date, String format) {
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat(format);
+        return simpleDateFormat.format(date);
     }
 }

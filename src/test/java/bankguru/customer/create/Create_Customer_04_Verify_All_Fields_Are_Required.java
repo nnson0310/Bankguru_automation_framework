@@ -4,25 +4,24 @@ import bankguru.Pre_Condition_Register_Email_And_Login;
 import commons.BaseTest;
 import org.openqa.selenium.WebDriver;
 import org.testng.annotations.*;
-import pageinterfaces.CommonText;
+import commons.CommonText;
 import pageobjects.CreateCustomerPage;
 import pageobjects.LoginPage;
 import pageobjects.ManagerHomePage;
 import pageobjects.PageGeneratorManager;
+import utilities.DataFaker;
 
-public class TC_03_Verify_City_Field extends BaseTest {
+public class Create_Customer_04_Verify_All_Fields_Are_Required extends BaseTest {
     WebDriver driver;
 
-    PageGeneratorManager pageGeneratorManager;
-
-    String menuSub;
+    String menuSub, customerNameInput, customerName;
 
     LoginPage loginPage;
     ManagerHomePage managerHomePage;
     CreateCustomerPage createCustomerPage;
 
     @Parameters({"browserName", "browserVersion", "environmentName", "ipAddress", "port", "platform"})
-    @BeforeClass(description = "Create customer - TC_01_Verify_Name_Field")
+    @BeforeClass(description = "Create_Customer_04_Verify_All_Fields_Are_Required")
     public void setUp(
             @Optional("firefox") String browserName,
             @Optional("latest") String browserVersion,
@@ -46,23 +45,47 @@ public class TC_03_Verify_City_Field extends BaseTest {
         verifyTrue(managerHomePage.isLoginSuccessTextDisplayed(driver));
 
         menuSub = CommonText.getCommonText().getNewCustomerMenuSub();
+        customerNameInput = "name";
+
+        //test data
+        customerName = DataFaker.getDataFaker().generateFullName();
 
     }
 
-    @Test(description = "Verify that Name can not be empty")
-    public void TC_Empty_Name() {
+    @Test(description = "Click submit button when all fields are empty")
+    public void TC_01_All_Fields_Are_Empty() {
 
-        log.info("TC_Empty_Name - Step 01: Navigate to add_new_customer page");
+        log.info("TC_01_All_Fields_Are_Empty - Step 01: Navigate to add_new_customer page");
         createCustomerPage = managerHomePage.navigateToCreateCustomerPage(driver, menuSub);
 
+        log.info("TC_01_All_Fields_Are_Empty - Step 02: Click submit button");
+        createCustomerPage.clickSubmitButton(driver);
+
+        log.info("TC_01_All_Fields_Are_Empty - Step 03: Verify that alert will be displayed");
+        verifyEquals(createCustomerPage.getAlertValidationMessage(driver), "please fill all fields");
+
+    }
+
+    @Test(description = "Click submit button when all fields are empty except customer name")
+    public void TC_02_All_Empty_Except_Customer_Name() {
+
+        log.info("TC_02_All_Empty_Except_Customer_Name - Step 01: Enter value into customer name field");
+        createCustomerPage.inputToTextboxByDynamicLocator(driver,  customerName, customerNameInput);
+
+        log.info("TC_02_All_Empty_Except_Customer_Name - Step 02: Click submit button");
+        createCustomerPage.clickSubmitButton(driver);
+
+        log.info("TC_02_All_Empty_Except_Customer_Name - Step 03: Verify that alert will be displayed");
+        verifyEquals(createCustomerPage.getAlertValidationMessage(driver), "please fill all fields");
+
+        log.info("TC_02_All_Empty_Except_Customer_Name - Step 04: Logout");
+        createCustomerPage.clickLogoutMenuSub(driver, "Log out");
     }
 
     @AfterClass(alwaysRun = true)
     public void tearDown() {
 
-        log.info("TC_Special_Chars_Name - Logout");
-        createCustomerPage.clickToMenuSubByDynamicLocator(driver, "Log out");
-
         closeBrowserAndKillProcess();
     }
+
 }

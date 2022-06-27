@@ -36,4 +36,7 @@ public class PageGeneratorManager {
         return new CreateCustomerPage(driver);
     }
 
+    public CreateCustomerSuccessPage getCreateCustomerSuccessPage(WebDriver driver) {
+        return new CreateCustomerSuccessPage(driver);
+    }
 }

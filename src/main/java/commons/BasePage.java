@@ -94,10 +94,6 @@ public abstract class BasePage {
         waitForAlertPresent(driver).dismiss();
     }
 
-    protected void getAlertText(WebDriver driver) {
-        waitForAlertPresent(driver).getText();
-    }
-
     protected void sendKeyToAlert(WebDriver driver, String str) {
 
         waitForAlertPresent(driver).sendKeys(str);
@@ -417,6 +413,11 @@ public abstract class BasePage {
         jsExecutor.executeScript("arguments[0].click();", getElement(driver, locator));
     }
 
+    protected void clickToElementByJS(WebDriver driver, String locator, String... dynamicValues) {
+        jsExecutor = (JavascriptExecutor) driver;
+        jsExecutor.executeScript("arguments[0].click();", getElement(driver, getDynamicXpath(locator, dynamicValues)));
+    }
+
     protected void scrollToElement(WebDriver driver, String locator) {
         jsExecutor = (JavascriptExecutor) driver;
         jsExecutor.executeScript("arguments[0].scrollIntoView(true);", getElement(driver, locator));
@@ -425,6 +426,11 @@ public abstract class BasePage {
     protected void removeAttributeInDOM(WebDriver driver, String locator, String attributeRemove) {
         jsExecutor = (JavascriptExecutor) driver;
         jsExecutor.executeScript("arguments[0].removeAttribute('" + attributeRemove + "');", getElement(driver, locator));
+    }
+
+    protected void changeAttribute(WebDriver driver, String locator, String attribute, String attributeValue) {
+        jsExecutor = (JavascriptExecutor) driver;
+        jsExecutor.executeScript("arguments[0].setAttribute('" + attribute + "', '" + attributeValue + "')", getElement(driver, locator));
     }
 
     protected boolean areJQueryAndJSLoadedSuccess(WebDriver driver) {
@@ -533,7 +539,13 @@ public abstract class BasePage {
      */
     public void clickToMenuSubByDynamicLocator(WebDriver driver, String menuSub) {
         waitForElementClickable(driver, CommonUI.MENU_SUB_NAV, menuSub);
-        clickToElement(driver, CommonUI.MENU_SUB_NAV, menuSub);
+        try {
+            clickToElement(driver, CommonUI.MENU_SUB_NAV, menuSub);
+        } catch(Exception e) {
+            System.out.println("Click element using javascript");
+            clickToElementByJS(driver, CommonUI.MENU_SUB_NAV, menuSub);
+        }
+
     }
 
     /**

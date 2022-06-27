@@ -1,19 +1,17 @@
-package bankguru.customer.create;
+package bankguru.customer.edit;
 
 import bankguru.Pre_Condition_Register_Email_And_Login;
 import commons.BaseTest;
 import org.openqa.selenium.WebDriver;
 import org.testng.annotations.*;
-import pageinterfaces.CommonText;
+import commons.CommonText;
 import pageobjects.CreateCustomerPage;
 import pageobjects.LoginPage;
 import pageobjects.ManagerHomePage;
 import pageobjects.PageGeneratorManager;
 
-public class TC_06_Verify_Pin_Field extends BaseTest {
+public class Edit_Customer_01_Verify_Customer_Id extends BaseTest {
     WebDriver driver;
-
-    PageGeneratorManager pageGeneratorManager;
 
     String menuSub;
 
@@ -22,7 +20,7 @@ public class TC_06_Verify_Pin_Field extends BaseTest {
     CreateCustomerPage createCustomerPage;
 
     @Parameters({"browserName", "browserVersion", "environmentName", "ipAddress", "port", "platform"})
-    @BeforeClass(description = "Create customer - TC_01_Verify_Name_Field")
+    @BeforeClass(description = "Create customer - Verify address field")
     public void setUp(
             @Optional("firefox") String browserName,
             @Optional("latest") String browserVersion,
@@ -31,6 +29,7 @@ public class TC_06_Verify_Pin_Field extends BaseTest {
             @Optional("4444") String port,
             @Optional("Windows 10") String platform
     ) {
+
         driver = getBrowserDriver(Pre_Condition_Register_Email_And_Login.url, browserName, browserVersion, environmentName, ipAddress, port, platform);
         loginPage = PageGeneratorManager.getPageGeneratorManager().getLoginPage(driver);
 
@@ -45,24 +44,12 @@ public class TC_06_Verify_Pin_Field extends BaseTest {
         log.info("Pre condition - Login with share data - Step 02: Verify that login successfully");
         verifyTrue(managerHomePage.isLoginSuccessTextDisplayed(driver));
 
-        menuSub = CommonText.getCommonText().getNewCustomerMenuSub();
-
-    }
-
-    @Test(description = "Verify that Name can not be empty")
-    public void TC_Empty_Name() {
-
-        log.info("TC_Empty_Name - Step 01: Navigate to add_new_customer page");
-        createCustomerPage = managerHomePage.navigateToCreateCustomerPage(driver, menuSub);
+        menuSub = CommonText.getCommonText().getEditCustomerMenuSub();
 
     }
 
     @AfterClass(alwaysRun = true)
     public void tearDown() {
-
-        log.info("TC_Special_Chars_Name - Logout");
-        createCustomerPage.clickToMenuSubByDynamicLocator(driver, "Log out");
-
         closeBrowserAndKillProcess();
     }
 }
