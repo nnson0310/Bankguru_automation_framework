@@ -4,25 +4,23 @@ import bankguru.Pre_Condition_Register_Email_And_Login;
 import commons.BaseTest;
 import org.openqa.selenium.WebDriver;
 import org.testng.annotations.*;
-import pageinterfaces.CommonText;
+import commons.CommonText;
 import pageobjects.CreateCustomerPage;
 import pageobjects.LoginPage;
 import pageobjects.ManagerHomePage;
 import pageobjects.PageGeneratorManager;
 
-public class TC_05_Verify_State_Field extends BaseTest {
+public class Create_Customer_01_Verify_Address_Field extends BaseTest {
     WebDriver driver;
 
-    PageGeneratorManager pageGeneratorManager;
-
-    String menuSub;
+    String menuSub, inputName;
 
     LoginPage loginPage;
     ManagerHomePage managerHomePage;
     CreateCustomerPage createCustomerPage;
 
     @Parameters({"browserName", "browserVersion", "environmentName", "ipAddress", "port", "platform"})
-    @BeforeClass(description = "Create customer - TC_01_Verify_Name_Field")
+    @BeforeClass(description = "Create customer - Verify address field")
     public void setUp(
             @Optional("firefox") String browserName,
             @Optional("latest") String browserVersion,
@@ -31,6 +29,7 @@ public class TC_05_Verify_State_Field extends BaseTest {
             @Optional("4444") String port,
             @Optional("Windows 10") String platform
     ) {
+
         driver = getBrowserDriver(Pre_Condition_Register_Email_And_Login.url, browserName, browserVersion, environmentName, ipAddress, port, platform);
         loginPage = PageGeneratorManager.getPageGeneratorManager().getLoginPage(driver);
 
@@ -46,23 +45,46 @@ public class TC_05_Verify_State_Field extends BaseTest {
         verifyTrue(managerHomePage.isLoginSuccessTextDisplayed(driver));
 
         menuSub = CommonText.getCommonText().getNewCustomerMenuSub();
+        inputName = "addr";
 
     }
 
-    @Test(description = "Verify that Name can not be empty")
-    public void TC_Empty_Name() {
+    @Test(description = "Verify that Address can not be empty")
+    public void TC_01_Empty_Address() {
 
-        log.info("TC_Empty_Name - Step 01: Navigate to add_new_customer page");
+        log.info("TC_01_Empty_Address - Step 01: Navigate to add_new_customer page");
         createCustomerPage = managerHomePage.navigateToCreateCustomerPage(driver, menuSub);
+
+        log.info("TC_01_Empty_Address - Step 02: Clear address field");
+        createCustomerPage.inputToAddressField(driver, "");
+
+        log.info("TC_01_Empty_Address - Step 03: Press TAB button");
+        createCustomerPage.pressTabButton(driver);
+
+        log.info("TC_01_Empty_Address - Step 04: Verify that error message \"Address Field must not be blank\" is displayed");
+        verifyTrue(createCustomerPage.isAddressFieldValidationErrorMessageDisplayed(driver, inputName, "Address Field must not be blank"));
+
+    }
+
+    @Test(description = "Verify that Address's first char can not be blank space")
+    public void TC_02_First_Char_Blank_Space_Address() {
+
+        log.info("TC_03_First_Char_Blank_Space_Address - Step 01: Clear address field");
+        createCustomerPage.inputToAddressField(driver, "");
+
+        log.info("TC_03_First_Char_Blank_Space_Address - Step 02: Press space button");
+        createCustomerPage.pressSpaceButton(driver);
+
+        log.info("TC_03_First_Char_Blank_Space_Address - Step 03: Verify that error message \"First character can not have space\" is displayed");
+        verifyTrue(createCustomerPage.isAddressFieldValidationErrorMessageDisplayed(driver, inputName, "First character can not have space"));
+
+        log.info("TC_03_First_Char_Blank_Space_Address - Step 04: Logout");
+        createCustomerPage.clickLogoutMenuSub(driver, "Log out");
 
     }
 
     @AfterClass(alwaysRun = true)
     public void tearDown() {
-
-        log.info("TC_Special_Chars_Name - Logout");
-        createCustomerPage.clickToMenuSubByDynamicLocator(driver, "Log out");
-
         closeBrowserAndKillProcess();
     }
 }

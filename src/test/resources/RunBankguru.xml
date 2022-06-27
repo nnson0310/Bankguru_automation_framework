@@ -10,7 +10,7 @@
 
 <!--    <test name="Chrome" description="Run on chrome">-->
 <!--        <classes>-->
-<!--            <class name="bankguru.customer.create.TC_01_Verify_Name_Field"></class>-->
+<!--            <class name="bankguru.customer.create.Create_Customer_02_Verify_Name_Field"></class>-->
 <!--        </classes>-->
 <!--    </test>-->
 
@@ -27,7 +27,7 @@
 
         <classes>
             <class name="bankguru.Pre_Condition_Register_Email_And_Login"></class>
-            <class name="bankguru.customer.create.TC_02_Verify_Address_Field"></class>
+            <class name="bankguru.customer.create.Create_Customer_05_Valid_Customer_Info"></class>
         </classes>
     </test>
 </suite>

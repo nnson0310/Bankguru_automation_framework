@@ -1,4 +1,4 @@
-package pageinterfaces;
+package commons;
 
 import lombok.Getter;
 
@@ -18,5 +18,6 @@ public class CommonText {
     }
 
     private final String newCustomerMenuSub = "New Customer";
+    private final String editCustomerMenuSub = "Edit Customer";
 
 }

@@ -3,19 +3,17 @@ package bankguru.customer.create;
 import bankguru.Pre_Condition_Register_Email_And_Login;
 import commons.BaseTest;
 import org.openqa.selenium.WebDriver;
-import org.testng.Assert;
 import org.testng.annotations.*;
-import pageinterfaces.CommonText;
+import commons.CommonText;
 import pageobjects.CreateCustomerPage;
 import pageobjects.LoginPage;
 import pageobjects.ManagerHomePage;
 import pageobjects.PageGeneratorManager;
 
-public class TC_01_Verify_Name_Field extends BaseTest {
+public class Create_Customer_02_Verify_Name_Field extends BaseTest {
 
     WebDriver driver;
 
-    PageGeneratorManager pageGeneratorManager;
     private String[] numericNames, specialCharNames;
 
     String menuSub, inputName;
@@ -25,7 +23,7 @@ public class TC_01_Verify_Name_Field extends BaseTest {
     CreateCustomerPage createCustomerPage;
 
     @Parameters({"browserName", "browserVersion", "environmentName", "ipAddress", "port", "platform"})
-    @BeforeClass(description = "Create customer - TC_01_Verify_Name_Field")
+    @BeforeClass(description = "Create customer - Verify name field")
     public void setUp(
             @Optional("firefox") String browserName,
             @Optional("latest") String browserVersion,
@@ -58,7 +56,7 @@ public class TC_01_Verify_Name_Field extends BaseTest {
     }
 
     @Test(description = "Verify that Name can not be empty")
-    public void TC_Empty_Name() {
+    public void TC_01_Empty_Name() {
 
         log.info("TC_Empty_Name - Step 01: Navigate to add_new_customer page");
         createCustomerPage = managerHomePage.navigateToCreateCustomerPage(driver, menuSub);
@@ -74,7 +72,7 @@ public class TC_01_Verify_Name_Field extends BaseTest {
     }
 
     @Test(description = "Verify that Name can not be numeric")
-    public void TC_Numeric_Name() {
+    public void TC_02_Numeric_Name() {
 
         for(String numericName : numericNames) {
             log.info("TC_Numeric_Name - Step 01: Enter numeric value in Name field with value = " + numericName);
@@ -86,7 +84,7 @@ public class TC_01_Verify_Name_Field extends BaseTest {
     }
 
     @Test(description = "Verify that Name can not contain special characters")
-    public void TC_Special_Chars_Name() {
+    public void TC_03_Special_Chars_Name() {
 
         for(String specialCharName : specialCharNames) {
             log.info("TC_Special_Chars_Name - Step 01: Enter special chars in Name field with value = " + specialCharName);
@@ -95,6 +93,10 @@ public class TC_01_Verify_Name_Field extends BaseTest {
             log.info("TC_Special_Chars_Name - Step 02: Verify that error message \"Special characters are not allowed\" is displayed");
             verifyTrue(createCustomerPage.isValidationErrorMessageDisplayed(driver, inputName,"Special characters are not allowed"));
         }
+
+        log.info("TC_03_Special_Chars_Name - Step 03: Logout");
+        createCustomerPage.clickLogoutMenuSub(driver, "Log out");
+
     }
 
     @AfterClass(alwaysRun = true)
