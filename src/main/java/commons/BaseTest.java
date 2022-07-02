@@ -78,8 +78,8 @@ public abstract class BaseTest {
         boolean pass = true;
         System.out.println("Verification Start");
         try {
-            System.out.println(" -------------------------- PASSED -------------------------- ");
             Assert.assertFalse(condition);
+            System.out.println(" -------------------------- PASSED -------------------------- ");
         } catch (Throwable e) {
             System.out.println(" -------------------------- FAILED -------------------------- ");
             pass = false;

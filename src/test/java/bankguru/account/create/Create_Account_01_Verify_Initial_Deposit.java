@@ -62,7 +62,7 @@ public class Create_Account_01_Verify_Initial_Deposit extends BaseTest {
         createAccountPage.pressTabButton(driver);
 
         log.info("TC_01_Empty_Initial_Deposit - Step 03: Verify that validation error message 'Initial Deposit must not be blank' is displayed");
-        createAccountPage.isValidationErrorMessageDisplayed(driver, initialDepositFieldName, "Initial Deposit must not be blank");
+        verifyTrue(createAccountPage.isValidationErrorMessageDisplayed(driver, initialDepositFieldName, "Initial Deposit must not be blank"));
     }
 
     @Test(description = "TC_02_Must_Be_Numeric - Verify that initial deposit field must be numeric")
@@ -72,7 +72,7 @@ public class Create_Account_01_Verify_Initial_Deposit extends BaseTest {
            createAccountPage.inputToTextboxByDynamicLocator(driver, charContainInitialDeposit, initialDepositFieldName);
 
            log.info("TC_02_Must_Be_Numeric - Step 02: Verify that validation error message 'Characters are not allowed' is displayed");
-           createAccountPage.isValidationErrorMessageDisplayed(driver, initialDepositFieldName, "Characters are not allowed");
+           verifyTrue(createAccountPage.isValidationErrorMessageDisplayed(driver, initialDepositFieldName, "Characters are not allowed"));
        }
     }
 
@@ -83,7 +83,7 @@ public class Create_Account_01_Verify_Initial_Deposit extends BaseTest {
             createAccountPage.inputToTextboxByDynamicLocator(driver, specialCharInitialDeposit, initialDepositFieldName);
 
             log.info("TC_03_Contain_Special_Characters - Step 02: Verify that validation error message 'Special characters are not allowed' is displayed");
-            createAccountPage.isValidationErrorMessageDisplayed(driver, initialDepositFieldName, "Special characters are not allowed");
+            verifyTrue(createAccountPage.isValidationErrorMessageDisplayed(driver, initialDepositFieldName, "Special characters are not allowed"));
         }
     }
 
