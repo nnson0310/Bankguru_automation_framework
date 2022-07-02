@@ -18,7 +18,7 @@ import java.util.concurrent.TimeUnit;
  * All testcases class will extends from this class
  * @author Son
  */
-public class BaseTest {
+public abstract class BaseTest {
     private WebDriver driver;
 
     protected final Log log;

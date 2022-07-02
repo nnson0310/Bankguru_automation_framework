@@ -2,7 +2,6 @@ package pageobjects;
 
 import commons.BasePage;
 import org.openqa.selenium.WebDriver;
-import pageinterfaces.CreateCustomerPageUI;
 import pageinterfaces.CreateCustomerSuccessPageUI;
 
 public class CreateCustomerSuccessPage extends BasePage {
@@ -20,5 +19,10 @@ public class CreateCustomerSuccessPage extends BasePage {
     public String getCustomerInfoByDynamicLocator(WebDriver driver, String rowName) {
         waitForElementVisible(driver, CreateCustomerSuccessPageUI.CREATED_CUSTOMER_INFO, rowName);
         return getElementText(driver, CreateCustomerSuccessPageUI.CREATED_CUSTOMER_INFO, rowName);
+    }
+
+    public DeleteCustomerPage navigateToDeleteCustomer(WebDriver driver, String menuSub) {
+        clickToMenuSubByDynamicLocator(driver, menuSub);
+        return PageGeneratorManager.getPageGeneratorManager().getDeleteCustomerPage(driver);
     }
 }

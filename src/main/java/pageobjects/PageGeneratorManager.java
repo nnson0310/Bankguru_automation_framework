@@ -39,4 +39,28 @@ public class PageGeneratorManager {
     public CreateCustomerSuccessPage getCreateCustomerSuccessPage(WebDriver driver) {
         return new CreateCustomerSuccessPage(driver);
     }
+
+    public EditCustomerPage getEditCustomerPage(WebDriver driver) {
+        return new EditCustomerPage(driver);
+    }
+
+    public EditCustomerFormPage getEditCustomerFormPage(WebDriver driver) {
+        return new EditCustomerFormPage(driver);
+    }
+
+    public CreateAccountPage getCreateAccountPage(WebDriver driver) {
+        return new CreateAccountPage(driver);
+    }
+
+    public DeleteCustomerPage getDeleteCustomerPage(WebDriver driver) {
+        return new DeleteCustomerPage(driver);
+    }
+
+    public DepositPage getDepositPage(WebDriver driver) {
+        return new DepositPage(driver);
+    }
+
+    public ChangePasswordPage getChangePasswordPage(WebDriver driver) {
+        return new ChangePasswordPage(driver);
+    }
 }

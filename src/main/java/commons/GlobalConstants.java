@@ -20,7 +20,7 @@ public class GlobalConstants {
 
     }
 
-    public static synchronized GlobalConstants getGlobalConstants() {
+    public synchronized static GlobalConstants getGlobalConstants() {
         if (globalConstants == null) {
             return new GlobalConstants();
         }

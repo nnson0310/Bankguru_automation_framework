@@ -1,10 +1,12 @@
 package browserdriverfactory;
 
+import commons.GlobalConstants;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 
+import java.io.File;
 import java.util.Collections;
 
 public class ChromeDriverFactory implements BrowserFactory{
@@ -21,7 +23,7 @@ public class ChromeDriverFactory implements BrowserFactory{
         chromeOptions.addArguments("--disable-infobars");
         chromeOptions.addArguments("--disable-notifications");
         chromeOptions.addArguments("--disable-geolocation");
-        chromeOptions.setExperimentalOption("useAutomationExtension", false);
+        chromeOptions.addExtensions(new File(GlobalConstants.getGlobalConstants().getBrowserExtensionPath() + "adblock.crx"));
         chromeOptions.setExperimentalOption("excludeSwitches", Collections.singletonList("enable-automation"));
 
         return new ChromeDriver(chromeOptions);

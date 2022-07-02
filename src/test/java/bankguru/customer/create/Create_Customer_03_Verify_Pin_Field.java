@@ -22,7 +22,7 @@ public class Create_Customer_03_Verify_Pin_Field extends BaseTest {
     private String[] characterPins, digitPins, specialCharPins;
 
     @Parameters({"browserName", "browserVersion", "environmentName", "ipAddress", "port", "platform"})
-    @BeforeClass(description = "Create customer - TC_03_Verify_Pin_Field")
+    @BeforeClass
     public void setUp(
             @Optional("firefox") String browserName,
             @Optional("latest") String browserVersion,

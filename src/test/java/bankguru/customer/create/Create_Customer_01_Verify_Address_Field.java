@@ -20,7 +20,7 @@ public class Create_Customer_01_Verify_Address_Field extends BaseTest {
     CreateCustomerPage createCustomerPage;
 
     @Parameters({"browserName", "browserVersion", "environmentName", "ipAddress", "port", "platform"})
-    @BeforeClass(description = "Create customer - Verify address field")
+    @BeforeClass
     public void setUp(
             @Optional("firefox") String browserName,
             @Optional("latest") String browserVersion,

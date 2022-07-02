@@ -10,7 +10,7 @@ public class VerificationFailures extends HashMap<ITestResult, List<Throwable>> 
         super();
     }
 
-    public static VerificationFailures getFailures() {
+    public synchronized static VerificationFailures getFailures() {
         if (failures == null) {
             failures = new VerificationFailures();
         }

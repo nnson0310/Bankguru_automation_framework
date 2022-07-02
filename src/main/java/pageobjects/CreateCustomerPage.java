@@ -45,7 +45,7 @@ public class CreateCustomerPage extends BasePage {
         alert.accept();
     }
 
-    public void checkGenderRadio(WebDriver driver, String gender) {
+    public void clickToGenderRadioButton(WebDriver driver, String gender) {
         waitForElementClickable(driver, CreateCustomerPageUI.GENDER_RADIO_BUTTON, gender);
         checkCheckboxOrRadio(driver, CreateCustomerPageUI.GENDER_RADIO_BUTTON, gender);
     }
