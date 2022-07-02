@@ -57,7 +57,7 @@ public class Pre_Condition_Register_Email_And_Login extends BaseTest {
 //            serverName = "product";
 //        }
 //        ConfigFactory.setProperty("server", serverName);
-//        ServerConfig serverconfig = ConfigFactory.create(ServerConfig.class);
+//        ServerConfig serverconfig = ConfigFactory.bankguru.account.create(ServerConfig.class);
 //        if (serverconfig.url() == null) {
 //            throw new InvalidServerNameException(serverName);
 //        }

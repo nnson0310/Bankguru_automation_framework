@@ -21,7 +21,7 @@ public class Create_Customer_04_Verify_All_Fields_Are_Required extends BaseTest 
     CreateCustomerPage createCustomerPage;
 
     @Parameters({"browserName", "browserVersion", "environmentName", "ipAddress", "port", "platform"})
-    @BeforeClass(description = "Create_Customer_04_Verify_All_Fields_Are_Required")
+    @BeforeClass
     public void setUp(
             @Optional("firefox") String browserName,
             @Optional("latest") String browserVersion,

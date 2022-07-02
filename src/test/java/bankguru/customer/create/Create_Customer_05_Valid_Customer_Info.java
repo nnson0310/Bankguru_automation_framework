@@ -17,9 +17,8 @@ public class Create_Customer_05_Valid_Customer_Info extends BaseTest {
 
     String menuSub;
 
-    private String customerName, gender, genderValue, dateOfBirth, address, city, state, pin, mobileNumber, email, customerPass;
-
-    public static String customerId;
+    public String customerId, customerName, customerPass;
+    public String gender, genderValue, dateOfBirth, address, city, state, pin, mobileNumber, email;
 
     LoginPage loginPage;
     ManagerHomePage managerHomePage;
@@ -27,7 +26,7 @@ public class Create_Customer_05_Valid_Customer_Info extends BaseTest {
     CreateCustomerSuccessPage createCustomerSuccessPage;
 
     @Parameters({"browserName", "browserVersion", "environmentName", "ipAddress", "port", "platform"})
-    @BeforeClass(description = "Create_Customer_04_Verify_All_Fields_Are_Required")
+    @BeforeClass
     public void setUp(
             @Optional("firefox") String browserName,
             @Optional("latest") String browserVersion,
@@ -77,7 +76,7 @@ public class Create_Customer_05_Valid_Customer_Info extends BaseTest {
         createCustomerPage.inputToTextboxByDynamicLocator(driver, customerName, "name");
 
         log.info("TC_01_Create_Customer_Success - Step 03: Select gender = " + genderValue);
-        createCustomerPage.checkGenderRadio(driver, genderValue);
+        createCustomerPage.clickToGenderRadioButton(driver, genderValue);
 
         log.info("TC_01_Create_Customer_Success - Step 04: Enter Date of birth = " + dateOfBirth);
         createCustomerPage.inputToDateOfBirthField(driver, dateOfBirth);
@@ -105,7 +104,6 @@ public class Create_Customer_05_Valid_Customer_Info extends BaseTest {
 
         log.info("TC_01_Create_Customer_Success - Step 12: Click submit button");
         createCustomerPage.clickSubmitButton(driver);
-        FunctionHelper.sleepInSeconds(5);
 
         createCustomerSuccessPage = PageGeneratorManager.getPageGeneratorManager().getCreateCustomerSuccessPage(driver);
 
@@ -149,7 +147,6 @@ public class Create_Customer_05_Valid_Customer_Info extends BaseTest {
 
     @AfterClass(alwaysRun = true)
     public void tearDown() {
-
         closeBrowserAndKillProcess();
     }
 

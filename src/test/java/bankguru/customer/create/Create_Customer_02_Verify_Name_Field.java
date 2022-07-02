@@ -23,7 +23,7 @@ public class Create_Customer_02_Verify_Name_Field extends BaseTest {
     CreateCustomerPage createCustomerPage;
 
     @Parameters({"browserName", "browserVersion", "environmentName", "ipAddress", "port", "platform"})
-    @BeforeClass(description = "Create customer - Verify name field")
+    @BeforeClass
     public void setUp(
             @Optional("firefox") String browserName,
             @Optional("latest") String browserVersion,
