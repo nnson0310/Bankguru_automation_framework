@@ -5,6 +5,7 @@
         <listener class-name="org.uncommons.reportng.HTMLReporter"/>
         <listener class-name="org.uncommons.reportng.JUnitXMLReporter"/>
         <listener class-name="reportconfig.ReportNGListener"/>
+        <listener class-name="commons.RetryListener"/>
     </listeners>
     <parameter name="registerUrl" value="https://demo.guru99.com"></parameter>
 

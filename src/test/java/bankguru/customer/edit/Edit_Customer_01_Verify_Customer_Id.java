@@ -71,7 +71,7 @@ public class Edit_Customer_01_Verify_Customer_Id extends BaseTest {
         editCustomerPage.pressTabButton(driver);
 
         log.info("TC_01_Empty_Customer_Id - Step 04: Verify that 'Customer ID is required' message is displayed");
-        editCustomerPage.isValidationErrorMessageDisplayed(driver, customerIdField, "Customer ID is required");
+        verifyTrue(editCustomerPage.isValidationErrorMessageDisplayed(driver, customerIdField, "Customer ID is required"));
 
     }
 
