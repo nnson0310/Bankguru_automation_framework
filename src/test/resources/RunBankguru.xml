@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<suite name="Bankguru Automation" parallel="tests" thread-count="2">
+<suite name="Bankguru Automation" parallel="tests" thread-count="3">
     <listeners>
         <listener class-name="reportconfig.MethodListener"></listener>
         <listener class-name="org.uncommons.reportng.HTMLReporter"/>
@@ -9,24 +9,10 @@
     </listeners>
     <parameter name="registerUrl" value="https://demo.guru99.com"></parameter>
 
-<!--    <test name="Chrome" description="Run on chrome">-->
-<!--        <parameter name="browserName" value="chrome"></parameter>-->
-<!--        <parameter name="browserVersion" value="latest"></parameter>-->
-<!--        <parameter name="environmentName" value="local"></parameter>-->
-<!--        <parameter name="ipAddress" value="localhost"></parameter>-->
-<!--        <parameter name="port" value="4444"></parameter>-->
-<!--        <parameter name="platform" value="Windows 10"></parameter>-->
-<!--        <classes>-->
-<!--            <class name="bankguru.Pre_Condition_Register_Email_And_Login"></class>-->
-<!--            <class name="bankguru.customer.edit.Edit_Customer_01_Verify_Customer_Id"></class>-->
-<!--        </classes>-->
-<!--    </test>-->
-
-
-    <test name="Firefox" description="Run on firefox">
-        <parameter name="browserName" value="firefox"></parameter>
+    <test name="Chrome" description="Run on chrome">
+        <parameter name="browserName" value="chrome"></parameter>
         <parameter name="browserVersion" value="latest"></parameter>
-        <parameter name="environmentName" value="local"></parameter>
+        <parameter name="environmentName" value="grid"></parameter>
         <parameter name="ipAddress" value="localhost"></parameter>
         <parameter name="port" value="4444"></parameter>
         <parameter name="platform" value="Windows 10"></parameter>
@@ -35,4 +21,17 @@
             <class name="bankguru.changepassword.Change_Password_01_Verify_Password"></class>
         </classes>
     </test>
+
+<!--    <test name="Firefox" description="Run on firefox">-->
+<!--        <parameter name="browserName" value="firefox"></parameter>-->
+<!--        <parameter name="browserVersion" value="latest"></parameter>-->
+<!--        <parameter name="environmentName" value="grid"></parameter>-->
+<!--        <parameter name="ipAddress" value="localhost"></parameter>-->
+<!--        <parameter name="port" value="4444"></parameter>-->
+<!--        <parameter name="platform" value="Windows 10"></parameter>-->
+<!--        <classes>-->
+<!--            <class name="bankguru.Pre_Condition_Register_Email_And_Login"></class>-->
+<!--            <class name="bankguru.changepassword.Change_Password_01_Verify_Password"></class>-->
+<!--        </classes>-->
+<!--    </test>-->
 </suite>
