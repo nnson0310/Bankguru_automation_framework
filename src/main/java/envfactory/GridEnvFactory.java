@@ -5,8 +5,10 @@ import org.openqa.selenium.Platform;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.firefox.FirefoxOptions;
+import org.openqa.selenium.opera.OperaOptions;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.remote.RemoteWebDriver;
+import utilities.FunctionHelper;
 
 import java.net.MalformedURLException;
 import java.net.URL;
@@ -31,9 +33,11 @@ public class GridEnvFactory {
             WebDriverManager.firefoxdriver().setup();
 
             capabilities = DesiredCapabilities.firefox();
+            // Comment below code if running with docker compose
             capabilities.setAcceptInsecureCerts(true);
-            capabilities.setBrowserName(String.valueOf(BROWSER_NAME.FIREFOX));
+            capabilities.setBrowserName(String.valueOf(BROWSER_NAME.FIREFOX).toLowerCase());
             capabilities.setPlatform(Platform.ANY);
+            capabilities.setVersion("latest");
 
             FirefoxOptions firefoxOptions = new FirefoxOptions();
             firefoxOptions.merge(capabilities);
@@ -41,14 +45,24 @@ public class GridEnvFactory {
             WebDriverManager.chromedriver().setup();
 
             capabilities = DesiredCapabilities.chrome();
+            // Comment below code if running with docker compose
             capabilities.setAcceptInsecureCerts(true);
-            capabilities.setBrowserName(String.valueOf(BROWSER_NAME.CHROME));
+            capabilities.setBrowserName(String.valueOf(BROWSER_NAME.CHROME).toLowerCase());
             capabilities.setPlatform(Platform.ANY);
 
             ChromeOptions chromeOptions = new ChromeOptions();
             chromeOptions.merge(capabilities);
-        }
-        else {
+        } else if (browser == BROWSER_NAME.OPERA) {
+            WebDriverManager.operadriver().setup();
+
+            capabilities = DesiredCapabilities.operaBlink();
+            capabilities.setAcceptInsecureCerts(true);
+            capabilities.setBrowserName(String.valueOf(BROWSER_NAME.OPERA).toLowerCase());
+            capabilities.setPlatform(Platform.ANY);
+
+            OperaOptions operaOptions = new OperaOptions();
+            operaOptions.merge(capabilities);
+        } else {
             throw new RuntimeException("Browser name is invalid");
         }
 
@@ -57,7 +71,6 @@ public class GridEnvFactory {
         } catch (MalformedURLException e) {
             e.printStackTrace();
         }
-
         return driver;
     }
 }

@@ -1,0 +1,45 @@
+version: "3"
+services:
+  selenium-hub:
+    image: selenium/hub:3.141.59
+    container_name: selenium-hub
+    ports:
+      - "4444:4444"
+
+  chrome:
+#    image: selenium/node-chrome:3.141.59
+    image: selenium/node-chrome-debug:3.141.59
+    # specify port to connect to VNC viewer for viewing screen when running testcases
+    # only work with debug version of node-chrome or node-firefox
+    ports:
+      - "15900:5900"
+    depends_on:
+      - selenium-hub
+    environment:
+      - HUB_HOST=selenium-hub
+      - HUB_PORT=4444
+      - NODE_MAX_INSTANCES=5
+      - NODE_MAX_SESSION=5
+      - SCREEN_WIDTH=1920
+      - SCREEN_HEIGHT=1080
+
+  firefox:
+    image: selenium/node-firefox:3.141.59
+#    image: selenium/node-firefox-debug:3.141.59
+    depends_on:
+      - selenium-hub
+    environment:
+      - HUB_HOST=selenium-hub
+      - HUB_PORT=4444
+      - NODE_MAX_INSTANCES=5
+      - NODE_MAX_SESSION=5
+      - SCREEN_WIDTH=1920
+      - SCREEN_HEIGHT=1080
+
+#  opera:
+#    image: selenium/node-opera:3.141.59
+#    depends_on:
+#      - selenium-hub
+#    environment:
+#      - HUB_HOST=selenium-hub
+#      - HUB_PORT=4445

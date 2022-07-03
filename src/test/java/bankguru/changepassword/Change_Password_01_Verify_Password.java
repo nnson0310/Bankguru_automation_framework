@@ -27,7 +27,6 @@ public class Change_Password_01_Verify_Password extends BaseTest {
             @Optional("4444") String port,
             @Optional("Windows 10") String platform
     ) {
-
         driver = getBrowserDriver(Pre_Condition_Register_Email_And_Login.url, browserName, browserVersion, environmentName, ipAddress, port, platform);
         loginPage = PageGeneratorManager.getPageGeneratorManager().getLoginPage(driver);
 
@@ -44,7 +43,7 @@ public class Change_Password_01_Verify_Password extends BaseTest {
 
         menuSub = CommonText.getCommonText().getChangePasswordMenuSub();
 
-        log.info("Pre condition - Login with share data - Step 03: Navigate to new account page");
+        log.info("Pre condition - Login with share data - Step 03: Navigate to change password page");
         changePasswordPage = managerHomePage.navigateToChangePasswordPage(driver, menuSub);
 
         oldPasswordFieldName = "oldpassword";
@@ -63,7 +62,7 @@ public class Change_Password_01_Verify_Password extends BaseTest {
         changePasswordPage.pressTabButton(driver);
 
         log.info("TC_01_Empty_Old_Password - Step 03: Verify that validation error message 'Old Password must not be blank' id displayed ");
-        verifyFalse(changePasswordPage.isValidationErrorMessageDisplayed(driver, oldPasswordFieldName, "Old Password must not be blank"));
+        verifyTrue(changePasswordPage.isValidationErrorMessageDisplayed(driver, oldPasswordFieldName, "Old Password must not be blank"));
     }
 
 //    @Test(description = "TC_02_Empty_New_Password - Verify that new password can not be empty")
@@ -118,9 +117,9 @@ public class Change_Password_01_Verify_Password extends BaseTest {
 //        verifyTrue(changePasswordPage.isValidationErrorMessageDisplayed(driver, confirmPasswordFieldName, "Passwords do not Match"));
 //    }
 
-    @AfterClass(alwaysRun = true)
-    public void tearDown() {
-        closeBrowserAndKillProcess();
-    }
+//    @AfterClass(alwaysRun = true)
+//    public void tearDown() {
+//        closeBrowserAndKillProcess();
+//    }
 
 }
