@@ -1,7 +1,9 @@
 package commons;
 
+import envfactory.CloudCredentials;
 import lombok.Getter;
 import lombok.Setter;
+import org.aeonbits.owner.ConfigFactory;
 
 import java.io.File;
 
@@ -15,9 +17,9 @@ import java.io.File;
 public class GlobalConstants {
 
     private static GlobalConstants globalConstants;
+    private final CloudCredentials cloudCredentials = ConfigFactory.create(CloudCredentials.class);;
 
     private GlobalConstants() {
-
     }
 
     public synchronized static GlobalConstants getGlobalConstants() {
@@ -40,8 +42,8 @@ public class GlobalConstants {
     private final String browserExtensionPath = projectPath + File.separator + "browserExtensions" + File.separator;
 
     // Cloud testing info (saucelabs)
-    private final String cloudUsername = "oauth-tomanyeuem123-029fd";
-    private final String cloudPassword = "f9cddf50-6249-40da-b489-c5ca465ab9c8";
+    private final String cloudUsername = cloudCredentials.cloudUsername();
+    private final String cloudPassword = cloudCredentials.cloudPassword();
     private final String cloudUrl = "https://" + cloudUsername + ":" + cloudPassword + "@ondemand.apac-southeast-1.saucelabs.com:443/wd/hub";
 
 }
