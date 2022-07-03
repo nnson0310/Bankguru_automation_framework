@@ -20,6 +20,9 @@ Important Note:
 maven run test 
 maven run test -Dserver=serverName
 ```
+**Running with batch file**
+Click and runbatch file with server name
+
 #### Local running:
 Clone project and run through maven command line (or running with TestNG plugins).
 **Support server name** is: dev, testing, staging, product. Each server name is corresponding to each below domain:
