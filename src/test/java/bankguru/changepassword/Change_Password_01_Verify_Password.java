@@ -65,18 +65,18 @@ public class Change_Password_01_Verify_Password extends BaseTest {
         verifyTrue(changePasswordPage.isValidationErrorMessageDisplayed(driver, oldPasswordFieldName, "Old Password must not be blank"));
     }
 
-//    @Test(description = "TC_02_Empty_New_Password - Verify that new password can not be empty")
-//    public void TC_02_Empty_New_Password() {
-//
-//        log.info("TC_02_Empty_New_Password - Step 01: Clear new password field");
-//        changePasswordPage.inputToTextboxByDynamicLocator(driver, "", newPasswordFieldName);
-//
-//        log.info("TC_02_Empty_New_Password - Step 02: Press Tab button");
-//        changePasswordPage.pressTabButton(driver);
-//
-//        log.info("TC_02_Empty_New_Password - Step 03: Verify that validation error message 'New Password must not be blank' id displayed ");
-//        verifyTrue(changePasswordPage.isValidationErrorMessageDisplayed(driver, newPasswordFieldName, "New Password must not be blank"));
-//    }
+   @Test(description = "TC_02_Empty_New_Password - Verify that new password can not be empty")
+   public void TC_02_Empty_New_Password() {
+
+       log.info("TC_02_Empty_New_Password - Step 01: Clear new password field");
+       changePasswordPage.inputToTextboxByDynamicLocator(driver, "", newPasswordFieldName);
+
+       log.info("TC_02_Empty_New_Password - Step 02: Press Tab button");
+       changePasswordPage.pressTabButton(driver);
+
+       log.info("TC_02_Empty_New_Password - Step 03: Verify that validation error message 'New Password must not be blank' id displayed ");
+       verifyTrue(changePasswordPage.isValidationErrorMessageDisplayed(driver, newPasswordFieldName, "New Password must not be blank"));
+   }
 //
 //    @Test(description = "TC_03_Must_Have_Numeric_Value - Verify that new password must have at least one numeric value")
 //    public void TC_03_Must_Have_Numeric_Value() {
