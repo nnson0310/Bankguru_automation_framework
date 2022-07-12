@@ -25,7 +25,7 @@
     <test name="Firefox" description="Run on firefox">
         <parameter name="browserName" value="firefox"></parameter>
         <parameter name="browserVersion" value="latest"></parameter>
-        <parameter name="environmentName" value="cloud"></parameter>
+        <parameter name="environmentName" value="local"></parameter>
         <parameter name="ipAddress" value="localhost"></parameter>
         <parameter name="port" value="4444"></parameter>
         <parameter name="platform" value="Windows 10"></parameter>
