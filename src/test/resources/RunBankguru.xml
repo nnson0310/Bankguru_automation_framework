@@ -2,27 +2,27 @@
 <suite name="Bankguru Automation" parallel="tests" thread-count="3">
     <listeners>
         <listener class-name="reportconfig.MethodListener"></listener>
-        <listener class-name="org.uncommons.reportng.HTMLReporter"/>
-        <listener class-name="org.uncommons.reportng.JUnitXMLReporter"/>
-        <listener class-name="reportconfig.ReportNGListener"/>
-        <listener class-name="commons.RetryListener"/>
+        <listener class-name="org.uncommons.reportng.HTMLReporter" />
+        <listener class-name="org.uncommons.reportng.JUnitXMLReporter" />
+        <listener class-name="reportconfig.ReportNGListener" />
+        <listener class-name="commons.RetryListener" />
     </listeners>
     <parameter name="registerUrl" value="https://demo.guru99.com"></parameter>
 
-<!--    <test name="Chrome" description="Run on chrome">-->
-<!--        <parameter name="browserName" value="chrome"></parameter>-->
-<!--        <parameter name="browserVersion" value="latest"></parameter>-->
-<!--        <parameter name="environmentName" value="grid"></parameter>-->
-<!--        <parameter name="ipAddress" value="localhost"></parameter>-->
-<!--        <parameter name="port" value="4444"></parameter>-->
-<!--        <parameter name="platform" value="Windows 10"></parameter>-->
-<!--        <classes>-->
-<!--            <class name="bankguru.Pre_Condition_Register_Email_And_Login"></class>-->
-<!--            <class name="bankguru.changepassword.Change_Password_01_Verify_Password"></class>-->
-<!--        </classes>-->
-<!--    </test>-->
+    <test name="Chrome" description="Run on chrome">
+        <parameter name="browserName" value="chrome"></parameter>
+        <parameter name="browserVersion" value="latest"></parameter>
+        <parameter name="environmentName" value="local"></parameter>
+        <parameter name="ipAddress" value="localhost"></parameter>
+        <parameter name="port" value="4444"></parameter>
+        <parameter name="platform" value="Windows 10"></parameter>
+        <classes>
+            <class name="bankguru.Pre_Condition_Register_Email_And_Login"></class>
+            <class name="bankguru.changepassword.Change_Password_01_Verify_Password"></class>
+        </classes>
+    </test>
 
-    <test name="Firefox" description="Run on firefox">
+    <!-- <test name="Firefox" description="Run on firefox">
         <parameter name="browserName" value="firefox"></parameter>
         <parameter name="browserVersion" value="latest"></parameter>
         <parameter name="environmentName" value="cloud"></parameter>
@@ -33,5 +33,5 @@
             <class name="bankguru.Pre_Condition_Register_Email_And_Login"></class>
             <class name="bankguru.changepassword.Change_Password_01_Verify_Password"></class>
         </classes>
-    </test>
+    </test> -->
 </suite>
