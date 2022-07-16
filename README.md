@@ -17,8 +17,8 @@ Important Note:
 ### Install
 **Running by maven command line (recommend):**
 ```sh
-maven run test 
-maven run test -Dserver=serverName
+mvn run test 
+mvn run test -Dserver=serverName
 ```
 **Running with batch file**
 Click and runbatch file with server name
